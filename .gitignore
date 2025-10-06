@@ -1,2 +1,15 @@
-/Plugins/MenuBuilder
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
 /vendor/
+composer.lock
+
+# Cache
+.phpunit.result.cache

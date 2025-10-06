@@ -1,103 +1,110 @@
 <?php
 App::uses('Component', 'Controller');
 
-class MenuGathererComponent extends Component {
+class MenuGathererComponent extends Component
+{
+    protected $_controller;
 
-	protected $_controller;
+    protected $_menu = [];
 
-	protected $_menu = array();
+    /**
+     * Initialize component
+     *
+     * @param Controller $controller Instantiating controller
+     * @return void
+     */
+    public function initialize(Controller $controller)
+    {
+        parent::initialize($controller);
 
-/**
- * Initialize component
- *
- * @param Controller $controller Instantiating controller
- * @return void
- */
-	public function initialize(Controller $controller) {
-		parent::initialize($controller);
+        $this->_controller = $controller;
+    }
 
-		$this->_controller = $controller;
-	}
+    /**
+     * MenuGathererComponent::get()
+     *
+     * @param string $menu Menu
+     * @return array Menu data
+     */
+    public function get($menu = null)
+    {
+        if ($menu === null) {
+            return $this->_menu;
+        }
 
-/**
- * MenuGathererComponent::get()
- *
- * @param string $menu Menu
- * @return array Menu data
- */
-	public function get($menu = null) {
-		if ($menu === null) {
-			return $this->_menu;
-		}
+        return $this->_menu[$menu];
+    }
 
-		return $this->_menu[$menu];
-	}
+    /**
+     * Add an item to a menu at the specified position
+     *
+     * @param string $menu Menu
+     * @param array $item Item
+     * @param int $index Index
+     * @return void
+     */
+    public function item($menu, $item = [], $index = null)
+    {
+        $this->_checkMenu($menu);
 
-/**
- * Add an item to a menu at the specified position
- *
- * @param string $menu Menu
- * @param array $item Item
- * @param int $index Index
- * @return void
- */
-	public function item($menu, $item = array(), $index = null) {
-		$this->_checkMenu($menu);
+        if ($index === null) {
+            $this->_menu[$menu][] = $item;
 
-		if ($index === null) {
-			$this->_menu[$menu][] = $item;
-			return;
-		}
+            return;
+        }
 
-		$this->_menu = array_splice($this->_menu, $index, 0, $item);
-	}
+        $this->_menu = array_splice($this->_menu, $index, 0, $item);
+    }
 
-/**
- * MenuGathererComponent::menu()
- *
- * @param mixed $name Name
- * @param mixed $menu Menu
- * @return void
- */
-	public function menu($name, $menu = array()) {
-		if (is_array($name)) {
-			foreach ($name as $key => $val) {
-				$this->setMenu($key, $val);
-			}
-			return;
-		}
+    /**
+     * MenuGathererComponent::menu()
+     *
+     * @param mixed $name Name
+     * @param mixed $menu Menu
+     * @return void
+     */
+    public function menu($name, $menu = [])
+    {
+        if (is_array($name)) {
+            foreach ($name as $key => $val) {
+                $this->setMenu($key, $val);
+            }
 
-		$this->_menu[$name] = $menu;
-	}
+            return;
+        }
 
-/**
- * MenuGathererComponent::set()
- *
- * @param mixed $menu Menu
- * @return void
- */
-	public function set($menu = array()) {
-		$this->_menu = (array)$menu;
-	}
+        $this->_menu[$name] = $menu;
+    }
 
-/**
- * MenuGathererComponent::_checkMenu()
- *
- * @param mixed $name Name
- * @return void
- */
-	protected function _checkMenu($name) {
-		if (is_array($name)) {
-			foreach ($name as $val) {
-				$this->_checkMenu($val);
-			}
+    /**
+     * MenuGathererComponent::set()
+     *
+     * @param mixed $menu Menu
+     * @return void
+     */
+    public function set($menu = [])
+    {
+        $this->_menu = (array)$menu;
+    }
 
-			return;
-		}
+    /**
+     * MenuGathererComponent::_checkMenu()
+     *
+     * @param mixed $name Name
+     * @return void
+     */
+    protected function _checkMenu($name)
+    {
+        if (is_array($name)) {
+            foreach ($name as $val) {
+                $this->_checkMenu($val);
+            }
 
-		if (!isset($this->_menu[$name])) {
-			$this->set($name);
-		}
-	}
+            return;
+        }
 
+        if (!isset($this->_menu[$name])) {
+            $this->set($name);
+        }
+    }
 }
