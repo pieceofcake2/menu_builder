@@ -19,6 +19,12 @@
     "replace": {
         "torifat/cake-menu_builder": "^2.0"
     },
+    "autoload-dev": {
+        "classmap": ["tests/test_app/"],
+        "exclude-from-classmap": [
+            "vendor/pieceofcake2/app/src/Console/Command/AppShell.php"
+        ]
+    },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
