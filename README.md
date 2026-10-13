@@ -27,7 +27,9 @@ Now it supports menus built with [ACL Menu Component](http://mark-story.com/post
 
 ## Requirements
 
-* CakePHP 2.10+
+The 2.x branch has the following requirements:
+
+* CakePHP 2.12+ ([pieceofcake2/cakephp](https://github.com/pieceofcake2/cakephp))
 * PHP 8.0+
 
 ## Installation

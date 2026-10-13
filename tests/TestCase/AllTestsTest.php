@@ -2,6 +2,11 @@
 
 use PHPUnit\Framework\TestSuite;
 
+/**
+ * AllTestsTest class
+ *
+ * This test group will run all MenuBuilder tests.
+ */
 class AllTestsTest extends TestSuite
 {
     /**
@@ -12,7 +17,7 @@ class AllTestsTest extends TestSuite
     public static function suite(): CakeTestSuite
     {
         $suite = new CakeTestSuite('All Tests');
-        $suite->addTestDirectoryRecursive(App::pluginPath('MenuBuilder') . 'Test' . DS . 'Case' . DS);
+        $suite->addTestDirectoryRecursive(App::pluginPath('MenuBuilder') . 'tests' . DS . 'TestCase' . DS);
 
         return $suite;
     }

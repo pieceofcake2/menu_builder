@@ -8,7 +8,7 @@ App::uses('CakeRequest', 'Network');
 /**
  * MenuGathererComponent Test Case
  */
-class MenuGathererComponentTestCase extends CakeTestCase
+class MenuGathererComponentTest extends CakeTestCase
 {
     /**
      * SetUp method
@@ -121,83 +121,5 @@ class MenuGathererComponentTestCase extends CakeTestCase
         $expected = $this->MenuGatherer->get();
         $result = ['item1' => ['controller' => 'pages', 'action' => 'display', 'item1']];
         $this->assertEquals($expected, $result);
-    }
-}
-
-class TestMenuGathererComponent extends MenuGathererComponent
-{
-    public $name = 'MenuGatherer';
-
-    public $cacheKey = 'test_menu_storage';
-
-    /**
-     * TestMenuGathererComponent::getMenu()
-     *
-     * @return array
-     */
-    public function getMenu(): array
-    {
-        return $this->_menu;
-    }
-}
-
-class TestMenuGathererController extends Controller
-{
-    public $components = ['MenuBuilder.TestMenuGatherer'];
-}
-
-class AuthUser extends CakeTestModel
-{
-    public $name = 'AuthUser';
-}
-
-class Controller1Controller extends Controller
-{
-    /**
-     * Controller1Controller::action1()
-     *
-     * @return void
-     */
-    public function action1(): void
-    {
-    }
-
-    /**
-     * Controller1Controller::action2()
-     *
-     * @return void
-     */
-    public function action2(): void
-    {
-    }
-}
-
-class Controller2Controller extends Controller
-{
-    /**
-     * Controller2Controller::action1()
-     *
-     * @return void
-     */
-    public function action1(): void
-    {
-    }
-
-    /**
-     * Controller2Controller::action2()
-     *
-     * @return void
-     */
-    public function action2(): void
-    {
-    }
-
-    /**
-     * Controller2Controller::admin_action()
-     *
-     * @return void
-     */
-    public function admin_action(): void // phpcs:ignore PSR1.Methods.CamelCapsMethodName.NotCamelCaps
-    {
     }
 }
