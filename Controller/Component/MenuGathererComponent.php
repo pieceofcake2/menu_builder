@@ -36,11 +36,15 @@ class MenuGathererComponent extends Component
     }
 
     /**
-     * Add an item to a menu at the specified position
+     * Add an item to a menu
      *
-     * @param string $menu Menu
+     * The menu is created if it does not exist yet. Without `$index` the item
+     * is appended; otherwise it is inserted at that position (as with
+     * `array_splice()`, a negative index counts from the end of the menu).
+     *
+     * @param string $menu Menu name
      * @param array $item Item
-     * @param int $index Index
+     * @param int|null $index Position to insert the item at, or null to append it
      * @return void
      */
     public function item($menu, $item = [], $index = null)
@@ -53,7 +57,7 @@ class MenuGathererComponent extends Component
             return;
         }
 
-        $this->_menu = array_splice($this->_menu, $index, 0, $item);
+        array_splice($this->_menu[$menu], $index, 0, [$item]);
     }
 
     /**
@@ -88,9 +92,11 @@ class MenuGathererComponent extends Component
     }
 
     /**
-     * MenuGathererComponent::_checkMenu()
+     * Initialise the given menu(s) as empty if they do not exist yet
      *
-     * @param mixed $name Name
+     * Existing menus are left untouched.
+     *
+     * @param array|string $name Menu name or list of menu names
      * @return void
      */
     protected function _checkMenu($name)
@@ -104,7 +110,7 @@ class MenuGathererComponent extends Component
         }
 
         if (!isset($this->_menu[$name])) {
-            $this->set($name);
+            $this->_menu[$name] = [];
         }
     }
 }

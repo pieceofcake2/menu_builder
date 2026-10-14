@@ -66,6 +66,99 @@ class MenuGathererComponentTest extends CakeTestCase
     }
 
     /**
+     * Adding an item to a new menu must not touch the other menus
+     *
+     * @return void
+     */
+    public function testItemKeepsOtherMenus(): void
+    {
+        $footer = [['title' => 'Contact', 'url' => '/contact']];
+        $this->MenuGatherer->menu('footer', $footer);
+
+        $home = ['title' => 'Home', 'url' => '/'];
+        $this->MenuGatherer->item('main', $home);
+
+        $expected = [
+            'footer' => $footer,
+            'main' => [$home],
+        ];
+        $this->assertSame($expected, $this->MenuGatherer->get());
+    }
+
+    /**
+     * Adding items to several new menus keeps each of them
+     *
+     * @return void
+     */
+    public function testItemCreatesMenusIndependently(): void
+    {
+        $home = ['title' => 'Home', 'url' => '/'];
+        $contact = ['title' => 'Contact', 'url' => '/contact'];
+        $this->MenuGatherer->item('main', $home);
+        $this->MenuGatherer->item('footer', $contact);
+
+        $expected = [
+            'main' => [$home],
+            'footer' => [$contact],
+        ];
+        $this->assertSame($expected, $this->MenuGatherer->get());
+    }
+
+    /**
+     * TestItem method with an index
+     *
+     * @return void
+     */
+    public function testItemWithIndex(): void
+    {
+        $footer = [['title' => 'Contact', 'url' => '/contact']];
+        $this->MenuGatherer->menu('footer', $footer);
+
+        $first = ['title' => 'First', 'url' => '/first'];
+        $second = ['title' => 'Second', 'url' => '/second'];
+        $third = ['title' => 'Third', 'url' => '/third'];
+        $last = ['title' => 'Last', 'url' => '/last'];
+
+        $this->MenuGatherer->item('main', $first);
+        $this->MenuGatherer->item('main', $third);
+        $this->MenuGatherer->item('main', $second, 1);
+        $this->MenuGatherer->item('main', $last, 3);
+
+        $this->assertSame([$first, $second, $third, $last], $this->MenuGatherer->get('main'));
+        $this->assertSame($footer, $this->MenuGatherer->get('footer'));
+    }
+
+    /**
+     * TestItem method with an index on a menu that does not exist yet
+     *
+     * @return void
+     */
+    public function testItemWithIndexOnNewMenu(): void
+    {
+        $home = ['title' => 'Home', 'url' => '/'];
+        $this->MenuGatherer->item('main', $home, 0);
+
+        $this->assertSame(['main' => [$home]], $this->MenuGatherer->get());
+    }
+
+    /**
+     * TestItem method with a negative index
+     *
+     * @return void
+     */
+    public function testItemWithNegativeIndex(): void
+    {
+        $first = ['title' => 'First', 'url' => '/first'];
+        $second = ['title' => 'Second', 'url' => '/second'];
+        $last = ['title' => 'Last', 'url' => '/last'];
+
+        $this->MenuGatherer->menu('main', [$first, $last]);
+        $this->MenuGatherer->item('main', $second, -1);
+
+        $this->assertSame([$first, $second, $last], $this->MenuGatherer->get('main'));
+    }
+
+    /**
      * TestMenu method
      *
      * @return void
