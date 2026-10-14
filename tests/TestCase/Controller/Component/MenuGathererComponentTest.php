@@ -111,6 +111,21 @@ class MenuGathererComponentTest extends CakeTestCase
     }
 
     /**
+     * TestMenu method with an array of menus
+     *
+     * @return void
+     */
+    public function testMenuWithArray(): void
+    {
+        $main = [['title' => 'Home', 'url' => '/']];
+        $footer = [['title' => 'Contact', 'url' => '/contact']];
+        $this->MenuGatherer->menu(['main' => $main, 'footer' => $footer]);
+
+        $this->assertEquals($main, $this->MenuGatherer->get('main'));
+        $this->assertEquals($footer, $this->MenuGatherer->get('footer'));
+    }
+
+    /**
      * TestSet method
      *
      * @return void

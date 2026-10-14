@@ -7,6 +7,7 @@ App::uses('AppHelper', 'View/Helper');
  * This helper will build Dynamic Menu
  *
  * @author M. M. Rifat-Un-Nabi <to.rifat@gmail.com>
+ * @property HtmlHelper $Html
  */
 class MenuBuilderHelper extends AppHelper
 {
@@ -114,7 +115,8 @@ class MenuBuilderHelper extends AppHelper
      *
      * @param string $id Array key.
      * @param array $options Aditional Options.
-     * @param array &$data Data which has the key.
+     * @param array|null &$data Data which has the key. Defaults to the menus passed in the settings.
+     * @param-out ($data is array ? array : null) $data
      * @param bool &$isActive Whether it is active or not.
      * @return string HTML menu
      */
