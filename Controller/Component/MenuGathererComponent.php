@@ -21,10 +21,10 @@ class MenuGathererComponent extends Component
     }
 
     /**
-     * MenuGathererComponent::get()
+     * Get a menu, or all menus
      *
-     * @param string $menu Menu
-     * @return array Menu data
+     * @param string|null $menu Menu name, or null for all menus
+     * @return array|null Menu data, or null when the menu does not exist
      */
     public function get($menu = null)
     {
@@ -32,7 +32,7 @@ class MenuGathererComponent extends Component
             return $this->_menu;
         }
 
-        return $this->_menu[$menu];
+        return $this->_menu[$menu] ?? null;
     }
 
     /**
