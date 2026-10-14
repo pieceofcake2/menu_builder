@@ -67,7 +67,7 @@ class MenuGathererComponent extends Component
     {
         if (is_array($name)) {
             foreach ($name as $key => $val) {
-                $this->setMenu($key, $val);
+                $this->menu($key, $val);
             }
 
             return;
