@@ -1,6 +1,6 @@
 {
     "name" : "pieceofcake2/menu_builder",
-    "description": "A dynamic menu building helper for CakePHP 2.x",
+    "description": "Dynamic menu building helper for CakePHP 2 with multi-level and permission based menus",
     "type" : "cakephp-plugin",
     "keywords": ["cakephp", "cakephp2", "menu", "helper"],
     "license": "MIT",
