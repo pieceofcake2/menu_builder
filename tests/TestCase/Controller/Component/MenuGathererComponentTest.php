@@ -53,6 +53,19 @@ class MenuGathererComponentTest extends CakeTestCase
     }
 
     /**
+     * Getting a menu that does not exist returns null without a warning
+     *
+     * @return void
+     */
+    public function testGetUnknownMenu(): void
+    {
+        $this->MenuGatherer->item('main', ['title' => 'Home', 'url' => '/']);
+
+        $this->assertNull($this->MenuGatherer->get('unknown'));
+        $this->assertSame(['main'], array_keys($this->MenuGatherer->get()));
+    }
+
+    /**
      * TestItem method
      *
      * @return void
