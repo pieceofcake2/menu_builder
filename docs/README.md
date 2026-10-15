@@ -25,7 +25,7 @@ by [Mark Story](http://mark-story.com/).
 
 Install the plugin with [Composer](https://getcomposer.org/):
 
-```
+```bash
 composer require pieceofcake2/menu_builder
 ```
 
