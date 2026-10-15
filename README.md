@@ -20,7 +20,7 @@ first and parent items, and menus based on the current user's group. This is a f
 
 ## Installation
 
-```
+```bash
 composer require pieceofcake2/menu_builder
 ```
 
