@@ -439,3 +439,12 @@ $this->set(compact('menu'));
     </dd>
 </dl>
 ```
+
+## Origin
+
+This package is a maintained fork of
+[torifat/cake-menu_builder](https://github.com/torifat/cake-menu_builder)
+(`torifat/cake-menu_builder` on Packagist, last upstream version v2.0.3), originally by Rifat Nabi.
+It is maintained for CakePHP 2 on modern PHP by [pieceofcake2](https://github.com/pieceofcake2).
+Changes from the original are listed in the
+[commit history since the fork](https://github.com/pieceofcake2/menu_builder/compare/b515602...2.x).
