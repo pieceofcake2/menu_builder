@@ -161,7 +161,7 @@ CSS クラスを追加できます。
 echo $this->MenuBuilder->build('main-menu', ['class' => 'fun green']);
 ```
 
-`build()` のそれ以外のオプションは [設定](#settings) です。それ以降のヘルパーの設定を上書きします。
+`build()` のそれ以外のオプションは [設定](#settings) と同じもので、指定するとそれ以降はヘルパーの設定を上書きします。
 
 <a id="settings"></a>
 
