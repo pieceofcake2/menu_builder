@@ -13,6 +13,13 @@ first and parent items, and menus based on the current user's group. This is a f
 [torifat/cake-menu_builder](https://github.com/torifat/cake-menu_builder) for
 [pieceofcake2/cakephp](https://github.com/pieceofcake2/cakephp).
 
+## Documentation
+
+- Website: https://pieceofcake2.github.io/menu_builder/
+- Markdown: [docs/README.md](docs/README.md) (for AI tools and offline reading)
+
+The Markdown documentation is also included in the Composer package, in the plugin's directory: `plugins/MenuBuilder/docs/README.md` (the location depends on your `installer-paths`). Install the package with `--dev` if you only need it for development.
+
 ## Requirements
 
 * PHP 8.0+
@@ -23,10 +30,6 @@ first and parent items, and menus based on the current user's group. This is a f
 ```
 composer require pieceofcake2/menu_builder
 ```
-
-## Documentation
-
-See the [documentation](https://pieceofcake2.github.io/menu_builder/).
 
 ## Contributing
 
